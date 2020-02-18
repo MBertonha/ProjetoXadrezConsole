@@ -7,23 +7,43 @@ namespace xadrez_console
     {
         public static void imprimirTabuleiro(Tabuleiro tabu)
         {
-
-            for(int i = 0; i < tabu.linhas; i++)
+            Console.WriteLine("  _________________ ");
+            for (int i = 0; i < tabu.linhas; i++)
             {
-                for(int j = 0; j < tabu.colunas; j++)
+                Console.Write(8 - i + "| ");
+                for (int j = 0; j < tabu.colunas; j++)
                 {
                     if(tabu.peca(i,j) == null) //Se não houver peça
                     {
+                        
                         Console.Write("- ");
                     }
                     else                       //Se caso fouver uma peça no tabuleiro
                     {
-                        Console.Write(tabu.peca(i, j) + " ");
+                        imprimirPeca(tabu.peca(i, j));
+                        Console.Write(" ");
                     }
                 }
+                Console.Write("|");
                 Console.WriteLine();
             }
+            Console.WriteLine(" |_________________|");
+            Console.WriteLine("   A B C D E F G H  ");
+        }
 
+        public static void imprimirPeca(Peca peca)
+        {
+            if(peca.cor == Cor.Branca)
+            {
+                Console.Write(peca);
+            }
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(peca);
+                Console.ForegroundColor = aux;
+            }
         }
 
     }
