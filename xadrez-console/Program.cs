@@ -12,6 +12,8 @@ namespace xadrez_console
         static void Main(string[] args)
         {
             Tabuleiro tabu = new Tabuleiro(8, 8);
+            Tela.imprimirTabuleiro(tabu);
+            Console.ReadLine();
         }
     }
 }
