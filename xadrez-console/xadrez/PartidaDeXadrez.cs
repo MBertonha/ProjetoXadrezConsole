@@ -5,8 +5,8 @@ namespace xadrez
     class PartidaDeXadrez
     {
         public Tabuleiro tabu { get; private set; }
-        private int turno;
-        private Cor jogadorAtual;
+        public int turno { get; private set; }
+        public Cor jogadorAtual { get; private set; }
         public bool terminada { get; private set; }
 
         public PartidaDeXadrez()
@@ -26,6 +26,42 @@ namespace xadrez
             //Coloca no destino incrementando o movimento e retirando uma peça se houver
             Peca pecaCapturada = tabu.retirarPeca(destino);
             tabu.colocarPeca(p, destino);
+        }
+
+        public void realizaJogada(Posicao origem, Posicao destino)
+        {
+            executaMovimento(origem, destino);
+            turno++;
+            mudaJogador();
+        }
+
+
+        public void validarPosicaoOrigem(Posicao pos)
+        {
+            if(tabu.peca(pos) == null)
+            {
+                throw new TabuleiroException("Não existe peça na posição escolhida");
+            }
+            if (jogadorAtual != tabu.peca(pos).cor)
+            {
+                throw new TabuleiroException("A peça escolhida não é sua");
+            }
+            if (!tabu.peca(pos).existeMovimentosPossiveis())
+            {
+                throw new TabuleiroException("Não há movimentos possiveis para esta peça");
+            }
+        }
+
+        private void mudaJogador()
+        {
+            if (jogadorAtual == Cor.Branca)
+            {
+                jogadorAtual = Cor.Preta;
+            }
+            else
+            {
+                jogadorAtual = Cor.Branca;
+            }
         }
 
         private void colocarPecas()

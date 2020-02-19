@@ -21,6 +21,22 @@
             qteMovimentos++;
         }
 
+        public bool existeMovimentosPossiveis()
+        {
+            bool[,] mat = movimentosPossiveis();
+            for (int i = 0; i < tabu.linhas; i++)
+            {
+                for (int j = 0; j < tabu.colunas; j++)
+                {
+                    if(mat[i,j] == true)
+                    {
+                        return true; //Existe pelomeno 1 mov possivel
+                    }
+                }
+            }
+            return false;  //Nao existe nenhum mov possivel
+        }
+
         public abstract bool[,] movimentosPossiveis();
     }
 }
