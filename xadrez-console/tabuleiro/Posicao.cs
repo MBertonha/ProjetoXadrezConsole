@@ -15,5 +15,11 @@
         {
             return linha + ", " + coluna;
         }
+
+        public void definirValores(int linha, int coluna)
+        {
+            this.coluna = coluna;
+            this.linha = linha;
+        }
     }
 }
