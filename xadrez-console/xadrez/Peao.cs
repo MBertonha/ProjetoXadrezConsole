@@ -26,25 +26,38 @@ namespace xadrez
             bool[,] matAux = new bool[tabu.linhas, tabu.colunas];
             Posicao pos = new Posicao(0, 0);
 
+
+            int cont = 1;
             //Acima ++
             if (qteMovimentos == 0)
             {
-                pos.definirValores(posicao.linha - 1, posicao.coluna);
-                if (tabu.posicaoValida(pos) && podeMover(pos))
-                {
-                    matAux[pos.linha, pos.coluna] = true;
-                    matAux[pos.linha - 1, pos.coluna] = true;
-                }
+                cont++;
             }
-            else
+
+            int mov = cont;
+
+            if (cor == Cor.Branca)
             {
-                //Acima
-                pos.definirValores(posicao.linha - 1, posicao.coluna);
+                mov = mov * -1;
+            }
+
+            for (int i = 0; i < cont; i++)
+            {
+                pos.definirValores(posicao.linha - mov, posicao.coluna);
                 if (tabu.posicaoValida(pos) && podeMover(pos))
                 {
                     matAux[pos.linha, pos.coluna] = true;
                 }
+
+                if (cor == Cor.Branca){
+                    mov++;
+                }
+                else
+                {
+                    mov--;
+                }   
             }
+            cont = 0;
             return matAux;
         }
     }
