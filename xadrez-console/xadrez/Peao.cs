@@ -29,21 +29,22 @@ namespace xadrez
             //Acima ++
             if (qteMovimentos == 0)
             {
-                pos.definirValores(pos.linha - 2, pos.coluna);
+                pos.definirValores(posicao.linha - 1, posicao.coluna);
+                if (tabu.posicaoValida(pos) && podeMover(pos))
+                {
+                    matAux[pos.linha, pos.coluna] = true;
+                    matAux[pos.linha - 1, pos.coluna] = true;
+                }
+            }
+            else
+            {
+                //Acima
+                pos.definirValores(posicao.linha - 1, posicao.coluna);
                 if (tabu.posicaoValida(pos) && podeMover(pos))
                 {
                     matAux[pos.linha, pos.coluna] = true;
                 }
             }
-            //Acima
-            pos.definirValores(pos.linha - 1, pos.coluna);
-            if (tabu.posicaoValida(pos) && podeMover(pos))
-            {
-                matAux[pos.linha, pos.coluna] = true;
-            }
-
-            
-            
             return matAux;
         }
     }
