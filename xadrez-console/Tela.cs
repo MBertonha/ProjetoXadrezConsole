@@ -26,9 +26,10 @@ namespace xadrez_console
 
         public static void imprimirTabuleiro(Tabuleiro tabu, bool [,] posicoesPossiveis)
         {
+            Console.WriteLine("  _________________ ");
             ConsoleColor fundoOriginal = Console.BackgroundColor;
             ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
-            Console.WriteLine("  _________________ ");
+            
 
             for (int i = 0; i < tabu.linhas; i++)
             {
@@ -44,14 +45,14 @@ namespace xadrez_console
                         Console.BackgroundColor = fundoOriginal;
                     }
                     imprimirPeca(tabu.peca(i, j));
-
                 }
+                Console.BackgroundColor = fundoOriginal;
                 Console.Write("|");
                 Console.WriteLine();
             }
             Console.WriteLine(" |_________________|");
             Console.WriteLine("   A B C D E F G H  ");
-            Console.BackgroundColor = fundoOriginal;
+            
         }
 
         public static void imprimirPeca(Peca peca)
